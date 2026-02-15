@@ -5,6 +5,7 @@ Uses LLM to provide context-aware responses with traceable references.
 
 from typing import List, Dict, Any, Optional
 import os
+import json
 from pathlib import Path
 
 try:
@@ -17,6 +18,16 @@ from ..indexer.code_indexer import CodebaseIndexer
 
 class QueryEngine:
     """Process natural language queries about the codebase."""
+    
+    # System message for LLM prompts
+    SYSTEM_MESSAGE = "You are a helpful code analysis assistant that provides accurate, traceable answers about codebases."
+    
+    # Instructions for LLM responses
+    LLM_INSTRUCTIONS = """Instructions:
+- Provide a clear, concise answer to the question
+- Reference specific files, functions, and line numbers when relevant
+- If the code context doesn't fully answer the question, mention what information is available
+- Keep your answer focused and technical"""
     
     def __init__(self, indexer: CodebaseIndexer, api_key: Optional[str] = None, 
                  model: str = "gpt-3.5-turbo"):
@@ -140,11 +151,7 @@ Question: {question}
 Code Context:
 {context}
 
-Instructions:
-- Provide a clear, concise answer to the question
-- Reference specific files, functions, and line numbers when relevant
-- If the code context doesn't fully answer the question, mention what information is available
-- Keep your answer focused and technical
+{self.LLM_INSTRUCTIONS}
 
 Answer:"""
         
@@ -152,7 +159,7 @@ Answer:"""
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[
-                    {"role": "system", "content": "You are a helpful code analysis assistant that provides accurate, traceable answers about codebases."},
+                    {"role": "system", "content": self.SYSTEM_MESSAGE},
                     {"role": "user", "content": prompt}
                 ],
                 temperature=0.3,

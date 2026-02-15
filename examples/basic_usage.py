@@ -93,7 +93,7 @@ def main():
     print("Example 5: Analyzing impact of changes")
     print("=" * 60)
     
-    file_to_change = "code_parser.py"
+    file_to_change = "src/codebase_intelligence/parsers/code_parser.py"
     print(f"\nAnalyzing impact of changes to: {file_to_change}")
     
     impact_result = engine.analyze_impact(file_to_change)

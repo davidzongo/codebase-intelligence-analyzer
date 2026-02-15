@@ -3,6 +3,7 @@ Command-line interface for Codebase Intelligence Analyzer.
 """
 
 import click
+import json
 from pathlib import Path
 from rich.console import Console
 from rich.table import Table
@@ -252,7 +253,6 @@ def stats(db_path):
         # Try to read metadata if available
         metadata_path = Path(db_path) / 'metadata.json'
         if metadata_path.exists():
-            import json
             with open(metadata_path) as f:
                 metadata = json.load(f)
             

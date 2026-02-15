@@ -42,9 +42,9 @@ codebase-analyze trace "CodeParser" --db-path "$DB_PATH"
 
 echo ""
 echo -e "${BLUE}Step 5: Analyzing impact${NC}"
-echo "Command: codebase-analyze impact 'code_parser.py' --db-path $DB_PATH"
+echo "Command: codebase-analyze impact 'src/codebase_intelligence/parsers/code_parser.py' --db-path $DB_PATH"
 echo ""
-codebase-analyze impact "code_parser.py" --db-path "$DB_PATH"
+codebase-analyze impact "src/codebase_intelligence/parsers/code_parser.py" --db-path "$DB_PATH"
 
 echo ""
 echo -e "${GREEN}======================================"
