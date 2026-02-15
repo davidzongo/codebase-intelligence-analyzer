@@ -12,8 +12,8 @@ from rich import print as rprint
 from dotenv import load_dotenv
 import os
 
-from ..indexer.code_indexer import CodebaseIndexer
-from ..query.query_engine import QueryEngine
+from codebase_intelligence.indexer.code_indexer import CodebaseIndexer
+from codebase_intelligence.query.query_engine import QueryEngine
 
 # Load environment variables
 load_dotenv()
