@@ -33,9 +33,6 @@ setup(
         "click>=8.1.7",
         "rich>=13.7.0",
         "tiktoken>=0.6.0",
-        "langchain>=0.1.7",
-        "langchain-openai>=0.0.5",
-        "langchain-community>=0.0.20",
     ],
     entry_points={
         "console_scripts": [
